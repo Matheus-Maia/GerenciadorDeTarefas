@@ -19,5 +19,5 @@ jobs:
         distribution: 'temurin'
     - name: Compile Java files
       run: javac src/gerenciadordetarefas/*.java -d bin
-    - name: Run Java application
-      run: java -cp bin gerenciadordetarefas.Main # Substitua 'gerenciadordetarefas.Main' pelo nome da sua classe principal
+    #- name: Run Java application
+     # run: java -cp bin gerenciadordetarefas.Main # Substitua 'gerenciadordetarefas.Main' pelo nome da sua classe principal
