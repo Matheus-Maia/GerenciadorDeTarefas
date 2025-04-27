@@ -29,7 +29,7 @@ public class LimpadorTela {
                 for (int i = 0; i < 50; i++) {
                     System.out.println();
                 }
-                return; // Sai do método após o fallback
+                return;
             }
 
             // Configura o processo para usar os mesmos fluxos de entrada/saída/erro do processo Java atual
