@@ -1,4 +1,4 @@
-name: Build and Run Java with Javac
+name: Build and Run Java with Javac Java 24
 
 on:
   push:
