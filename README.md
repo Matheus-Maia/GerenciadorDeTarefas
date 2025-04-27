@@ -2,7 +2,7 @@
 
 [![Java](https://img.shields.io/badge/Java-24%2B-blue.svg)](https://www.oracle.com/java/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/seu-usuario/gerenciador-tarefas/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Matheus-Maia/GerenciadorDeTarefas/pulls)
 
 Um gerenciador de tarefas em linha de comando (CLI) com persistência em CSV, desenvolvido em Java seguindo boas práticas de OOP.
 
