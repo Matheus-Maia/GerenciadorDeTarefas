@@ -34,7 +34,7 @@ Um gerenciador de tarefas em linha de comando (CLI) com persistência em CSV, de
 
 ### Clone o repositório
 ```bash
-**git clone ...**
+git clone ...
 ```
 ### Entre no diretório
 ```bash
