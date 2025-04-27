@@ -31,14 +31,20 @@ Um gerenciador de tarefas em linha de comando (CLI) com persistência em CSV, de
 - Git (opcional)
 
 ### Instalação
+
+### Clone o repositório
 ```bash
-# Clone o repositório
 **git clone ...**
-
-# Entre no diretório
-
-# Compile (Para Testar)
+```
+### Entre no diretório
+```bash
+cd GerenciadorDeTarefas
+```
+### Compile (Para Testar)
+```bash
 javac -d bin src/gerenciadordetarefas/*.java
-
-# Execute
+```
+### Execute
+```bash
 java -cp bin gerenciadordetarefas.Main
+```
