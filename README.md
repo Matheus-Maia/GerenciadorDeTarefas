@@ -82,7 +82,7 @@ Se você deseja contribuir com este projeto, siga os passos abaixo:
 
     * Vá para a página do seu repositório forkado no GitHub.
     * Você verá um botão "Compare & pull request". Clique nele.
-    * Verifique se a branch base é `main` (ou a branch de desenvolvimento principal do projeto) e a sua branch é `feature/nova-feature` (ou o nome da sua branch).
+    * Verifique se a branch base é `main` e a sua branch é `feature/nova-feature` (ou o nome da sua branch).
     * Adicione um título descritivo e uma explicação detalhada das suas mudanças no Pull Request.
     * Clique no botão "Create pull request".
 
