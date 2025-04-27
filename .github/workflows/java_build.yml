@@ -1,0 +1,23 @@
+name: Build and Run Java with Javac
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 24
+      uses: actions/setup-java@v4
+      with:
+        java-version: '24'
+        distribution: 'temurin'
+    - name: Compile Java files
+      run: javac src/gerenciadordetarefas/*.java -d bin
+    - name: Run Java application
+      run: java -cp bin gerenciadordetarefas.Main # Substitua 'gerenciadordetarefas.Main' pelo nome da sua classe principal
