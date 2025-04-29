@@ -1,0 +1,28 @@
+name: PR Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-pr:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout PR Code
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+        
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Run Tests
+      run: |
+        # Comandos de compilação e teste que mostrei anteriormente
+        mkdir -p build/{classes,test-classes}
+        javac -d build/classes src/gerenciadordetarefas/*.java
+        javac -d build/test-classes -cp build/classes:lib/junit-jupiter-api-5.9.2.jar test/gerenciadordetarefas/*.java
+        java -jar lib/junit-platform-console-standalone-1.9.2.jar --class-path build/classes:build/test-classes:lib/* --scan-class-path
