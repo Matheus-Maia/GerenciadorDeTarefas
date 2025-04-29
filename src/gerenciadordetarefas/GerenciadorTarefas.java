@@ -29,6 +29,14 @@ public class GerenciadorTarefas {
         tarefasPorStatus.get(Status.PRONTO).addAll(pronto);
     }
 
+    //feito por Stephanie
+    public void executarTarefasPorStatus(Status status) {
+    List<Tarefa> tarefas = tarefasPorStatus.get(status);
+    for (Executavel tarefa : tarefas) {
+        tarefa.executar(); // Aqui acontece o polimorfismo
+    }
+}
+
     public void adicionarTarefa(String descricao) {
         Tarefa novaTarefa = new Tarefa(descricao); // Status padrão AFAZER
         tarefasPorStatus.get(Status.AFAZER).add(novaTarefa);
