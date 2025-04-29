@@ -8,7 +8,7 @@ import java.util.UUID; // Importar UUID
 /**
  * Representa uma tarefa individual na lista de TODO, identificada por um UUID único.
  */
-public class Tarefa {
+public class Tarefa implements Executavel {
     private final UUID id; // ID único e imutável para cada tarefa
     private String descricao;
     private Date dataCriacao;
@@ -77,6 +77,12 @@ public class Tarefa {
 
     void setDataCriacao(Date dataCriacao) {
          this.dataCriacao = dataCriacao == null ? null : (Date) dataCriacao.clone();
+    }
+
+    //feito por Stephanie
+    @Override
+    public void executar() {
+        System.out.println("Executando tarefa: " + descricao);
     }
 
 
