@@ -7,9 +7,11 @@ import java.util.*;
  * para o gerenciador de tarefas.
  */
 public class Main {
-    private static final String NOME_ARQUIVO_TAREFAS = "tarefas.csv";
+    private static final String NOME_ARQUIVO_TAREFAS_JSON = "tarefas.json";
+    private static final String NOME_ARQUIVO_TAREFAS_CSV = "tarefas.csv";
     private static final Scanner scanner = new Scanner(System.in);
-    private static final PersistenciaTarefas persistencia = new PersistenciaTarefas();
+    private static final PersistenciaTarefas persistencia = new PersistenciaCSV();
+    private static final PersistenciaTarefas persistencia2 = new PersistenciaJSON();
     private static final LimpadorTela limpadorTela = new LimpadorTela();
     private static GerenciadorTarefas gerenciador;
 
@@ -18,7 +20,7 @@ public class Main {
      * @param args Argumentos da linha de comando (não utilizados).
      */
     public static void main(String[] args) {
-        Map<Status, List<Tarefa>> tarefasIniciais = persistencia.carregarTarefas(NOME_ARQUIVO_TAREFAS);
+        Map<Status, List<Tarefa>> tarefasIniciais = persistencia.carregar(NOME_ARQUIVO_TAREFAS_CSV);
 
         gerenciador = new GerenciadorTarefas(
                 tarefasIniciais.getOrDefault(Status.AFAZER, Collections.emptyList()),
@@ -278,12 +280,17 @@ public class Main {
      */
     private static void salvarTarefas() {
         System.out.println("--- Salvar Tarefas ---");
-        System.out.println("Salvando o estado atual das tarefas no arquivo: " + NOME_ARQUIVO_TAREFAS);
-        persistencia.salvarTarefas(gerenciador.getTodasTarefas(), NOME_ARQUIVO_TAREFAS);
+        System.out.println("Salvando o estado atual das tarefas no arquivo: " + NOME_ARQUIVO_TAREFAS_CSV);
+        persistencia.salvar(gerenciador.getTodasTarefas(), NOME_ARQUIVO_TAREFAS_CSV);
+        // A mensagem de sucesso/erro já é impressa pelo método salvarTarefas da persistência
+        
+        System.out.println("Salvando o estado atual das tarefas no arquivo: " + NOME_ARQUIVO_TAREFAS_JSON);
+        persistencia2.salvar(gerenciador.getTodasTarefas(), NOME_ARQUIVO_TAREFAS_JSON);
         // A mensagem de sucesso/erro já é impressa pelo método salvarTarefas da persistência
     }
 
-     /**
+     /**2
+      * 
       * Pausa a execução e espera que o usuário pressione Enter para continuar.
       * Útil para permitir que o usuário leia as mensagens antes que a tela seja limpa.
       */
