@@ -30,6 +30,8 @@ nbproject/
 
 # Persistencia
 *.csv
+*.json
 
 # Manifest
 *.manifest.txt
+/dist/
