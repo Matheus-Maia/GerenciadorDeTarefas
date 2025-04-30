@@ -15,39 +15,45 @@ public class LimpadorTela {
     public void limparTela() {
         try {
             ProcessBuilder pb;
-            String os = System.getProperty("os.name").toLowerCase(); // Obtém o nome do SO em minúsculas
+            String os = System.getProperty("os.name").toLowerCase();
 
-            // Verifica o sistema operacional e define o comando apropriado
             if (os.contains("windows")) {
-                pb = new ProcessBuilder("cmd", "/c", "cls"); // Comando para Windows
-            } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
-                pb = new ProcessBuilder("clear"); // Comando para Unix/Linux/macOS
-            } else {
-                // Fallback para sistemas operacionais não reconhecidos: imprime várias linhas em branco
-                System.out.println("Sistema operacional não suportado para limpeza de tela automática.");
-                System.out.println("Imprimindo linhas em branco como alternativa...");
-                for (int i = 0; i < 50; i++) {
-                    System.out.println();
+                // Comando para Windows
+                pb = new ProcessBuilder("cmd", "/c", "cls");
+                Process process = pb.inheritIO().start();
+                process.waitFor();
+                return;  // Sai após limpar no Windows
+            } 
+
+            if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+                // Comando Unix corrigido e com tratamento de erro
+                pb = new ProcessBuilder("sh", "-c", "clear 2>/dev/null");  // Corrigido /dev/null
+                Process process = pb.inheritIO().start();
+                int exitCode = process.waitFor();
+
+                // Se o clear falhar (ex: NetBeans), usa fallback
+                if (exitCode != 0) {
+                    fallbackLimpeza();
                 }
-                return;
+                return;  // Sai após limpar no Unix
             }
 
-            // Configura o processo para usar os mesmos fluxos de entrada/saída/erro do processo Java atual
-            Process process = pb.inheritIO().start();
-            // Espera o comando de limpeza terminar sua execução
-            process.waitFor();
+            // Fallback para outros sistemas
+            fallbackLimpeza();
 
         } catch (IOException | InterruptedException e) {
-            // Se ocorrer um erro ao executar o comando (ex: comando não encontrado, permissão negada)
-            // imprime uma mensagem de erro mas não interrompe a aplicação.
-            System.err.println("Aviso: Erro ao tentar limpar o terminal: " + e.getMessage());
-            // Restaura o status de interrupção se a thread foi interrompida durante waitFor()
+            fallbackLimpeza();  // Fallback em caso de exceção
             if (e instanceof InterruptedException) {
-                 Thread.currentThread().interrupt();
+                Thread.currentThread().interrupt();
             }
         } catch (SecurityException e) {
-             // Se houver restrições de segurança impedindo a execução de processos externos
-             System.err.println("Aviso: Restrição de segurança impediu a limpeza do terminal: " + e.getMessage());
+            fallbackLimpeza();
+        }
+    }
+
+    private void fallbackLimpeza() {
+        for (int i = 0; i < 30; i++) {
+            System.out.println();
         }
     }
 }
