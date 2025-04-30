@@ -33,5 +33,5 @@ nbproject/
 *.json
 
 # Manifest
-*.manifest.txt
+*.txt
 /dist/
