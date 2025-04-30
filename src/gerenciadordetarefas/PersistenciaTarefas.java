@@ -4,7 +4,10 @@ import java.util.Map;
 import java.util.List;
 
 /**
- * Interface para operações de persistência de tarefas em diferentes formatos.
+ * 
+ * Herança de percistencia por Marcelle
+ * 
+ * Interface para operações de persistência de tarefas em diferentes formatos. //Paulo Peviani
  */
 public interface PersistenciaTarefas {
     
